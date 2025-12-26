@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="styles/contatos.css">
     <link rel="stylesheet" href="styles/hero.css">
     <link rel="stylesheet" href="styles/products.css">
+    <link rel="stylesheet" href="styles/cart.css">
+
 
 
 
@@ -37,9 +39,8 @@
 
             
             <ul class="nav-list">
-                <li><a href="somos.html"><img src="assets/images/carrinho-de-compras.png"></a></li>
-                <li><a href="#products">Produtos</a></li>
-                <li><a href="#form">Contato</a></li>
+                <li><a href="javascript:void(0)" id="cart-icon"><img src="assets/images/carrinho-de-compras.png"></a></li>                <li><a href="#products">Produtos</a></li>
+                <li><a href="#footer">Contato</a></li>
                 
             </ul>
           
@@ -103,78 +104,35 @@
 
 
 
-
-        <section class="form-section", id="form">
-            <h1>Formulário de Contato</h1>
-            <form
-              action="https://formsubmit.co/karineaguiar45@gmail.com"
-              method="POST"
-              class="form"
-            >
-              <label for="name">Nome</label>
-              <input type="text" name="name" id="name" required />
-              <label for="email">E-mail</label>
-              <input type="email" name="email" id="email" required />
-              <label for="message">Mensagem</label>
-              <textarea name="message" id="message" required></textarea>
-              <input
-                type="hidden"
-                name="_next"
-                value="https://karinea213.github.io/frontend.unicesumar/obrigado.html"
-              />
-              <button type="submit">Enviar</button>
-            </form>
-
-              
-            <!--scripts-->
-                 <script src="javascript/scriptHeader.js"></script>
-                
-        </section>
-
-
-
+        
     </main>
 
+    <!-- cart side bar-->
+
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Carrinho</h2>
+            <button id="close-cart" class="close-cart">&times;</button>
+        </div>
+        <div id="cart-items-list" class="cart-items-list">
+            <p class="empty-cart">Seu carrinho está vazio.</p>
+        </div>
+        <div class="cart-footer">
+            <p id="total-price-display" class="total-price">Total: R$ 0,00</p>
+            <button class="checkout-button">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <div id="cart-overlay" class="cart-overlay"></div>
+
     <footer>
-        
-
-        <footer class="f-padding">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-text">
-        
-                    
-                        <h3>Contate-nos</h3>
-                        <p>Email:karineaguiar45@gmail.com</p>
-                        <p>Telefone: +55 21 990900659</p>
-                        <p>Endereço: Rio de janeiro, RJ</p>
-                    </div>
-                </div>
-                <div class="footer-content">
-                    <h3>Navegação</h3>
-                    <ul class="list">
-                        <li><a class="f-link"  href="#products">Produtos</a></li>
-                        <li><a class="f-link"href="#form">Contato</a></li>
-
-                    </ul>
-                </div>
-                <div class="footer-content">
-                    <h3>Siga-nos</h3>
-                    <ul class="social-icons">
-                    <li><a class="f-link" href=""><i class="fab fa-facebook"></i></a></li>
-                    <li><a class="f-link" href=""><i class="fab fa-twitter"></i></a></li>
-                    <li><a class="f-link" href=""><i class="fab fa-instagram"></i></a></li>
-                    <li><a class="f-link"href=""><i class="fab fa-linkedin"></i></a></li>
-                    </ul>
-                    </div>
-            </div>
-
-
-         <div class="bottom-bar">
+        <div class="bottom-bar">
             <p>&copy; Lynx Brasil All rights reserved</p>
-         </div>
+        </div>
     </footer>
 
-   
+    <script src="scripts/scriptHeader.js"></script>
+    <script src="scripts/scriptProducts"></script> 
+    
 </body>
 </html>

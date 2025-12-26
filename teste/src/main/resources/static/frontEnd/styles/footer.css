@@ -1,7 +1,8 @@
+
 :root{
+  
     --page-bg: black;
-    --page-bg2: yellow ; /*cor do inicio da pagina, primeira do gradiente fixo*/
-    --grid-gap: 0.75rem;
+    --page-bg2: yellow ; 
     --grid-margin: 1.5rem;
     --text-color: black;
     --h1-size: 1.75rem;
@@ -13,108 +14,10 @@
     --section-distance-gap: 3.75rem;
     --badge-color: white;
     --second-color: orange;
+  
+
   }
 
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-}
-
-main {
-    flex: 1;
-    padding-bottom: 180px;
-    padding-top: 60px;
-    box-sizing: border-box;
-}
-footer{
-    z-index: 1;
-    position: relative; /* Ensure z-index works as intended */
-}
-
-
-.container{
-    width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    background-color: rgba(255, 255, 0, 0.801);
-}
-.footer-content{
-    width: 33.3%;
-}
-h3{
-    font-size: 28px;
-    margin-bottom: 15px;
-    text-align: center;
-}
-.footer-content p{
-    width:300px;
-    margin: auto;
-    padding: 7px;
-}
-.footer-content ul{
-    text-align: center;
-}
-
-p, h3{
-    color: var(--text-color);
-}
-
-.list a{
-    color: var(--text-color);
-}
-
-
-
-.list{
-    padding: 0;
-}
-.list li{
-    width: auto;
-    text-align: center;
-    list-style-type:none;
-    padding: 7px;
-    position: relative;
-}
-.list li::before{
-    text-decoration: none;
-    content: '';
-    position: absolute;
-    transform: translate(-50%,-50%);
-    left: 50%;
-    top: 100%;
-    width: 0;
-    height: 2px;
-    background: var(--second-color);
-    transition-duration: .5s;
-}
-.list li:hover::before{
-    width: 70px;
-}
-.social-icons{
-    text-align: center;
-    padding: 0;
-}
-.social-icons li{
-    display: inline-block;
-    text-align: center;
-    padding: 5px;
-}
-.social-icons i{
-    color: var(--page-bg);
-    font-size: 25px;
-}
-
- .f-link:link, .f-link:visited, .f-link:active {
-    color: var(--page-bg); 
-}
-
-.social-icons i:hover{
-    color: var(--second-color);
-}
 .bottom-bar{
     background: var(--page-bg);
     text-align: center;
@@ -122,7 +25,7 @@ p, h3{
 
 }
 .bottom-bar p{
-    color: var(--page-bg2);
+    color: var(--badge-color);
     margin: 0;
     font-size: 16px;
     padding: 7px;
@@ -131,15 +34,13 @@ p, h3{
 
 @media (max-width: 760px) {
 
-    footer{
-        position: static;
-    }
+   
     
 
     .bottom-bar p{
 
         font-size: 10px;
-
+        position:static;
     }
 
     main{

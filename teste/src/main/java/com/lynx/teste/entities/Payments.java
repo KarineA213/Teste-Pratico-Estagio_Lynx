@@ -2,6 +2,8 @@ package com.lynx.teste.entities;
 
 import com.lynx.teste.enums.Method;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,11 +25,14 @@ public class Payments {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
+    @NotNull
     private Orders order;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private Method method;
 
+    @NotNull
     private BigDecimal amountCents;
 
     private LocalDateTime paidAt;

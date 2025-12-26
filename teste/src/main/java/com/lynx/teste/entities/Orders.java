@@ -2,6 +2,8 @@ package com.lynx.teste.entities;
 
 import com.lynx.teste.enums.Status;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +28,7 @@ public class Orders {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name ="customer_id")
+    @NotNull
     private Customers customers;
 
     @Enumerated(EnumType.STRING)
@@ -34,12 +37,15 @@ public class Orders {
     private LocalDateTime createdAt;
 
     @OneToMany( mappedBy = "order")
+    @NotEmpty
     private List<Payments> payments = new ArrayList<>();
 
     @OneToMany(mappedBy = "order")
+    @NotEmpty
     private List<OrderItems> items = new ArrayList<>();
 
     private BigDecimal totalAmount;
+
 
 
     public BigDecimal CalculateTotalAmount() {
@@ -51,17 +57,13 @@ public class Orders {
         return totalAmount;
 
 
+    }
 
-        //NÃO DEU CERTO, RETORNA NULL NO BANCO
-//       this.totalAmount= items.stream().map(item ->{
-//       BigDecimal price = item.getUnitPriceCents();
-//       BigDecimal qtd = BigDecimal.valueOf(item.getQuantity());
-//       return price.multiply(qtd);
-//       })
-//        .reduce(BigDecimal.ZERO, BigDecimal::add);
-//
-//        return totalAmount;
 
+    @PrePersist
+    @PreUpdate
+    public void prePersist() {
+        CalculateTotalAmount();
     }
 
 

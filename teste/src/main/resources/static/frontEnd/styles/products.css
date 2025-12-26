@@ -11,7 +11,16 @@
 
 
 .products-grid{
-    height:calc(100vh - 80px);
+  
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+      
+        width: 100%;
+        overflow-x: hidden;
+        padding: 1rem;
+
+      
 }
 .grid-container {
     display: grid;
@@ -24,17 +33,21 @@
 }
 
 .product-card {
+
+    background-color: var(--page-bg2);
+    border: 2px solid var(--page-bg);
+    border-radius: 20px; 
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    background-color: var(--page-bg2);
-    border: 2px solid var(--page-bg);
-    padding: 20px;
-    border-radius: 20px; 
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    height:90%; 
+    gap: 15px; 
+    width: 100%;
+    max-width: 100%; 
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+    border-radius: 8px;
 }
 
 .product-card:hover {
@@ -55,28 +68,32 @@
     object-fit: contain; 
     border-radius: 12px;
     margin-bottom: 12px;
+
+  
+
 }
 
 
 .add-button {
+
     background-color: white;
     color: black;
     border: 2px solid black;
     border-radius: 8px;
-    padding: 10px 15px;
-    cursor: pointer;
+    padding: 10px 20px;
     font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
     display: flex;
     align-items: center;
-    gap: 8px;
-    transition: 0.3s;
-    width: 90%;
     justify-content: center;
+    gap: 10px;
+    width: 90%;
 }
 
 .add-button:hover {
     border-color: var(--second-color);
-    background-color: white;
+    background-color: (--page-bg);
 }
 
 .add-button img {
@@ -84,8 +101,15 @@
 }
 
 @media (max-width: 1100px) {
-    .grid-container { grid-template-columns: repeat(2, 1fr); }
+    .grid-container { 
+        grid-template-columns: repeat(2, 1fr); 
+        width: 90%;
+        }
 }
-@media (max-width: 650px) {
-    .grid-container { grid-template-columns: 1fr; }
+@media (max-width: 750px) {
+
+    .grid-container { 
+        grid-template-columns: 1fr;
+        width: 90%;
+    }
 }
