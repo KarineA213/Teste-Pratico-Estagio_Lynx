@@ -66,20 +66,8 @@
   .form button {
     display: block;
     width: 100%;
-  .form-section {
-    height: auto; /* Adjust height to fit content */
-    padding: 5rem 1rem; /* Add padding to create spacing */
-    margin-bottom: var(--section-distance-gap); /* Ensure spacing below the section */
   }
 
-  .form label {
-    color: var(--page-bg);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }  color: var(--page-bg);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
   
   .form input,
   .form textarea {
