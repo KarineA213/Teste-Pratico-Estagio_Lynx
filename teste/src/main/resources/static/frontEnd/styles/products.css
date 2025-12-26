@@ -1,42 +1,91 @@
-:root{
+:root {
     --page-bg: black;
-    --page-bg2: yellow ; /*cor do inicio da pagina, primeira do gradiente fixo*/
-    --grid-gap: 0.75rem;
+    --page-bg2: yellow;
+    --grid-gap: 4rem;
     --grid-margin: 1.5rem;
     --text-color: black;
-    --h1-size: 1.75rem;
-    --h2-size: 1.5rem;
-    --button-padding-y:1rem;
-    --button-padding-x:2.25rem;
-    --btn-color: orange;
-    --section-distance: 25rem;
-    --section-distance-gap: 3.75rem;
-    --badge-color: white;
+    --btn-color: white;
     --second-color: orange;
-  }
+    --p-size: 1.5rem;
+}
 
-.grid-container{
-   
+
+.products-grid{
+    height:calc(100vh - 80px);
+}
+.grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
     gap: var(--grid-gap);
     padding: var(--grid-margin);
-
+    width: 100%;
+    box-sizing: border-box;
+    list-style: none;
 }
 
-
-.product-card{
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     background-color: var(--page-bg2);
-    border: 2px, solid var(--page-bg);
-    padding: 16px;
-    border-radius: 8x;
+    border: 2px solid var(--page-bg);
+    padding: 20px;
+    border-radius: 20px; 
     text-align: center;
-    transition: 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height:90%; 
+}
 
-    
+.product-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+  p{
+    font-size: var(--p-size);
+    font-weight: bold;
+    margin: 10px 0;
+    color: var(--text-color);
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    border-radius: 12px;
+    margin-bottom: 12px;
 }
 
 
-.product-card:hover{
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+.add-button {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    width: 90%;
+    justify-content: center;
+}
+
+.add-button:hover {
+    border-color: var(--second-color);
+    background-color: white;
+}
+
+.add-button img {
+    height: 20px; 
+}
+
+@media (max-width: 1100px) {
+    .grid-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 650px) {
+    .grid-container { grid-template-columns: 1fr; }
 }

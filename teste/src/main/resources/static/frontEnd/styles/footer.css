@@ -26,13 +26,14 @@ body {
 main {
     flex: 1;
     padding-bottom: 180px;
-  padding-top: 60px;
+    padding-top: 60px;
+    box-sizing: border-box;
 }
-
 footer{
     z-index: 1;
-    
+    position: relative; /* Ensure z-index works as intended */
 }
+
 
 .container{
     width: 100%;

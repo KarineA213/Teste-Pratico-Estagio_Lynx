@@ -2,8 +2,7 @@
 :root{
   
     --page-bg: black;
-    --page-bg2: yellow ; /*cor do inicio da pagina, primeira do gradiente fixo*/
-    --grid-gap: 0.75rem;
+    --page-bg2: yellow ; 
     --grid-margin: 1.5rem;
     --text-color: black;
     --h1-size: 1.75rem;
@@ -28,6 +27,7 @@
 .form-section{
   height: 90vh;
   align-content:center;
+  margin-bottom: 5 rem; /* Add spacing below the section */
 
   display: flex;
     align-items: center;
@@ -66,10 +66,17 @@
   .form button {
     display: block;
     width: 100%;
+  .form-section {
+    height: auto; /* Adjust height to fit content */
+    padding: 5rem 1rem; /* Add padding to create spacing */
+    margin-bottom: var(--section-distance-gap); /* Ensure spacing below the section */
   }
-  
+
   .form label {
     color: var(--page-bg);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }  color: var(--page-bg);
     line-height: 1;
     margin-bottom: 0.5rem;
   }
@@ -131,7 +138,7 @@
     
     
         .form-section {
-      padding: 2rem 1rem; /* espaço lateral para mobile */
+      padding: 2rem 1rem;
       box-sizing: border-box;
     }
 
