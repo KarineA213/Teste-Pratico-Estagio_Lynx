@@ -1,0 +1,128 @@
+:root{
+    --page-bg: black;
+    --page-bg2: yellow ; /*cor do inicio da pagina, primeira do gradiente fixo*/
+    --grid-gap: 0.75rem;
+    --grid-margin: 1.5rem;
+    --text-color: black;
+    --h1-size: 1.75rem;
+    --h2-size: 1.5rem;
+    --button-padding-y:1rem;
+    --button-padding-x:2.25rem;
+    --btn-color: orange;
+    --section-distance: 25rem;
+    --section-distance-gap: 3.75rem;
+    --badge-color: white;
+    --second-color: orange;
+  }
+.hero-container{
+
+    background-image: url(../images/hero/double\ light.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: calc(100vh - 80px);
+
+}
+
+
+
+.hero-content{
+    align-items: center;
+    display: flex ;
+    flex-direction: column;
+    padding:80px;
+
+}
+
+
+.hero-container h1{
+    padding: 66px   ;
+    padding-bottom: 35px;
+}
+
+.h1-id{
+    color: var(--page-bg);
+    font-family: Inter;
+    font-size: 83.768px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    padding: 80px;
+
+}
+
+
+
+
+.n-marked{
+    border-bottom: 2px solid var(--second-color);     
+
+}
+
+
+
+
+.teste{
+color: var(--page-bg);
+text-align: center;
+font-family: Inter;
+font-size: 120px;
+font-style: normal;
+font-weight: 800;
+line-height: 100%; /* 120px */
+padding: 80px;
+
+}
+
+
+@media (max-width: 750px) {
+
+
+    .logo{
+        padding-top: 15px;
+    }
+    
+    .hero-container h1{
+        padding: 35px;
+        padding-bottom: 0px;
+    }
+    
+    
+    .h1-id{
+     font-size: 60px;
+    
+    }
+    
+    
+    .teste{
+        font-size: 65px;
+    }
+    
+    }
+    
+@media (max-width: 750px) {
+
+
+    .logo{
+        padding-top: 15px;
+    }
+    
+    .hero-container h1{
+        padding: 35px;
+        padding-bottom: 0px;
+    }
+    
+    
+    .h1-id{
+     font-size: 60px;
+    
+    }
+    
+   
+    
+    .teste{
+        font-size: 65px;
+    }
+    
+    }
+    

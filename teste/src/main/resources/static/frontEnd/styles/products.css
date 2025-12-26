@@ -1,0 +1,42 @@
+:root{
+    --page-bg: black;
+    --page-bg2: yellow ; /*cor do inicio da pagina, primeira do gradiente fixo*/
+    --grid-gap: 0.75rem;
+    --grid-margin: 1.5rem;
+    --text-color: black;
+    --h1-size: 1.75rem;
+    --h2-size: 1.5rem;
+    --button-padding-y:1rem;
+    --button-padding-x:2.25rem;
+    --btn-color: orange;
+    --section-distance: 25rem;
+    --section-distance-gap: 3.75rem;
+    --badge-color: white;
+    --second-color: orange;
+  }
+
+.grid-container{
+   
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--grid-gap);
+    padding: var(--grid-margin);
+
+}
+
+
+.product-card{
+    background-color: var(--page-bg2);
+    border: 2px, solid var(--page-bg);
+    padding: 16px;
+    border-radius: 8x;
+    text-align: center;
+    transition: 0.3s;
+
+    
+}
+
+
+.product-card:hover{
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
