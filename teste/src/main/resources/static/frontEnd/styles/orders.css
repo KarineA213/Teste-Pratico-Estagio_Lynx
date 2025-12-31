@@ -21,3 +21,43 @@
     margin-bottom: 20px;
 
 }
+
+.orders-card-final{
+    background: var(--page-bg2);
+    border: 3px solid var(--page-bg);
+    margin-bottom: 20px;
+    padding: 15px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px var(--page-bg) ;
+
+}
+
+.order-card{
+    display: flex;
+    justify-content: space-between;
+}
+
+.span-orders{
+    background: var(--page-bg);
+    color: var(--btn-color);
+    padding: 2px 8px;
+    font-size: 16px;
+
+}
+
+.p-orders-cards{
+    margin: 10px 0 5px 0;
+}
+
+small{
+    color: grey;
+
+}
+
+#details{
+    display: none;
+    margin-top: 15px;
+    border-top: 1px solid var(--page-bg);
+    padding-top: 10px;
+}
+
