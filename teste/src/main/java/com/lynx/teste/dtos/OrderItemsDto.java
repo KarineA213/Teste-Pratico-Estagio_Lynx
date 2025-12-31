@@ -17,7 +17,6 @@ public class OrderItemsDto {
 
 
     private Long id;
-//    private Orders order; //o json entrou em looping
     private String productName;
     private Long productId;
 
@@ -29,9 +28,12 @@ public class OrderItemsDto {
     public OrderItemsDto(OrderItems entity) {
         id = entity.getId();
         productName = entity.getProduct().getName();
+        productId = entity.getProduct().getId();
         quantity = entity.getQuantity();
         unitPriceCents = entity.getUnitPriceCents();
     }
 
 
+    public OrderItemsDto(OrderItemsDto orderItemsDto) {
+    }
 }

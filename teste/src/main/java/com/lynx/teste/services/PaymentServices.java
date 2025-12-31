@@ -22,9 +22,9 @@ public class PaymentServices {
 
 
     @Transactional
-    public PaymentsDto insert(PaymentsDto payments) {
+    public PaymentsDto insert(PaymentsDto paymentsDto) {
         Payments newPayments = new Payments();
-        copytoEntity(new PaymentsDto(), newPayments);
+        copytoEntity(paymentsDto, newPayments);
         paymentsRepository.save(newPayments);
         return new PaymentsDto(newPayments);
     }
@@ -47,29 +47,8 @@ public class PaymentServices {
 
                 if(total.compareTo(orders.getTotalAmount()) >= 0){
                     orders.setStatus(Status.PAID);
-                }else if (total.compareTo(orders.getTotalAmount()) <= 0){
+                }else
                     orders.setStatus(Status.ON_WAIT);
-                }else{
-                    throw new PaymentError("pagamento acima do valor Total, reveja o valor de pagamento");
-                }
-
-
-
-//                BigDecimal pagamentos = orders.getTotalAmount();
-//
-//                if (paymentsDto.getAmountCents().compareTo(pagamentos)==0) {
-//
-//                    entity.setPaidAt(LocalDateTime.now());
-//                    orders.setStatus(Status.PAID);
-//
-//
-//                } else if (pagamentos.compareTo(paymentsDto.getAmountCents()) > 0) {
-//
-//                    orders.setStatus(Status.ON_WAIT);
-//
-//                }else {
-//                    //Add error porque o valor de pagamento foi maior que o total da compra.
-//                }
 
 
         }

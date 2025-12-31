@@ -2,7 +2,9 @@ package com.lynx.teste.controllers;
 
 import com.lynx.teste.dtos.OrdersDto;
 import com.lynx.teste.dtos.OrdersInsertDto;
+import com.lynx.teste.dtos.PaymentsDto;
 import com.lynx.teste.services.OrdersService;
+import com.lynx.teste.services.PaymentServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +21,8 @@ public class OrdersControllers {
 
     @Autowired
     OrdersService ordersService;
+    @Autowired
+    private PaymentServices paymentServices;
 
 
     @GetMapping("/{id}")
@@ -42,6 +46,14 @@ public class OrdersControllers {
      URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
              .buildAndExpand(createdOrderDto.getId()).toUri();
      return ResponseEntity.created(uri).build();
+
+    }
+
+    @PostMapping("/{id}/payments")
+    public ResponseEntity<Void> addPayment(@PathVariable Long id, @RequestBody PaymentsDto paymentDto) {
+        paymentDto.setId(id);
+        paymentServices.insert(paymentDto);
+        return ResponseEntity.noContent().build();
 
     }
 

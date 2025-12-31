@@ -37,10 +37,9 @@ public class Orders {
     private LocalDateTime createdAt;
 
     @OneToMany( mappedBy = "order")
-    @NotEmpty
     private List<Payments> payments = new ArrayList<>();
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     @NotEmpty
     private List<OrderItems> items = new ArrayList<>();
 

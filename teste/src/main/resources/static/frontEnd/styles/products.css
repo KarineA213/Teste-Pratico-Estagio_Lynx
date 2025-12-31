@@ -93,7 +93,7 @@
 
 .add-button:hover {
     border-color: var(--second-color);
-    background-color: (--page-bg);
+    background-color: var(--page-bg);
 }
 
 .add-button img {

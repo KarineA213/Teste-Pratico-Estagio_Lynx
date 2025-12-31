@@ -12,12 +12,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <!--styles-->
-    <link rel="stylesheet" href="styles/header.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <link rel="stylesheet" href="styles/contatos.css">
-    <link rel="stylesheet" href="styles/hero.css">
-    <link rel="stylesheet" href="styles/products.css">
-    <link rel="stylesheet" href="styles/cart.css">
+    <link rel="stylesheet" href="/frontEnd/styles/header.css">
+    <link rel="stylesheet" href="/frontEnd/styles/footer.css">
+    <link rel="stylesheet" href="/frontEnd/styles/filters.css">
+    <link rel="stylesheet" href="/frontEnd/styles/hero.css">
+    <link rel="stylesheet" href="/frontEnd/styles/products.css">
+    <link rel="stylesheet" href="/frontEnd/styles/cart.css">
+    <link rel="stylesheet" href="/frontEnd/styles/orders.css">
+
+
+
+
 
 
 
@@ -26,9 +31,7 @@
 
     <!--icons-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <!--scripts-->
-    <script src="scripts/scriptHeader.js" defer></script>
-   
+
 </head>
 
 <body>
@@ -37,102 +40,132 @@
             <a href="#" class="logo"><img src="assets/images/logo.png" alt="Logo da Lynx"></a>
             <button class="hamburguer"></button>
 
-            
+
             <ul class="nav-list">
                 <li><a href="javascript:void(0)" id="cart-icon"><img src="assets/images/carrinho-de-compras.png"></a></li>                <li><a href="#products">Produtos</a></li>
-                <li><a href="#footer">Contato</a></li>
-                
+                <li><a href="#orders-section">Meus últimos pedidos</a></li>
+
             </ul>
-          
+
         </nav>
 
     </header>
-    
+
     <main>
-        
+
         <section class="landingPage">
             <div class="hero-container">
                 <div class="hero-content">
-                   
+
                     <h1 class="h1-id">
                         Lynx Spa
                     </h1>
-                
+
                     <h2 class="teste">
                         Teste de Estágio
                     </h2>
-                </div>    
+                </div>
             </div>
         </section>
 
 
+        <!-- filer-->
+            <div class="filters-container" >
+
+            <div class="search-group">
+                <input type="text" id="search-input" placeholder="Buscar produto..." >
+                <button id="search-button" class="add-button">OK</button>
+            </div>
+
+            <select id="category-filter">
+                <option value="all">Todas as Categorias</option>
+                <option value="perifericos">Periféricos</option>
+                <option value="eletronicos">Eletrônicos</option>
+            </select>
+
+            <label class="toogle-check">
+                <input type="checkbox" id="active-toggle" checked> Somente Ativos
+            </label>
+        </div>
+
+
+        <!-- products-->
         <section class="products-grid" id="products">
-        
-            <div class="grid-container">
-        
-                <div class="product-card">
-                    <img class="product-img" src="assets/images/Mouse.jpg" alt="Mouse">
-                    <h3>Mouse Gamer</h3>
-                    <p>R$ 50,00</p>
-                    <button class="add-button">
-                        Adicionar ao carrinho
-                        <img src="assets/images/carrinho-de-compras.png">
-                    </button>
-                </div>
-        
-                <div class="product-card">
-                    <img class="product-img" src="assets/images/Teclado.jpg" alt="Teclado">
-                    <h3>Teclado Mecânico</h3>
-                    <p>R$ 120,00</p>
-                    <button class="add-button">
-                        Adicionar ao carrinho
-                        <img src="assets/images/carrinho-de-compras.png">
-                    </button>
-                </div>
-        
-                <div class="product-card">
-                    <img class="product-img" src="assets/images/Monitor.jpg" alt="Monitor">
-                    <h3>Monitor 24"</h3>
-                    <p>R$ 900,00</p>
-                    <button class="add-button">
-                        Adicionar ao carrinho
-                        <img src="assets/images/carrinho-de-compras.png">
-                    </button>
-                </div>       
-            </div> 
+            <div class="grid-container"></div>
         </section>
 
 
+        <!--last orders-->
+        <section id="orders-section" >
+            <h2 >Meus Últimos Pedidos</h2>
+            <div id="orders-list">
+            </div>
+        </section>
 
-        
+
     </main>
 
     <!-- cart side bar-->
+    <div id="cart-overlay" class="cart-overlay"></div>
 
     <div id="cart-sidebar" class="cart-sidebar">
         <div class="cart-header">
             <h2>Carrinho</h2>
+            <button id="clear-cart" class="clear-cart-btn">Limpar tudo</button>
             <button id="close-cart" class="close-cart">&times;</button>
         </div>
+
         <div id="cart-items-list" class="cart-items-list">
             <p class="empty-cart">Seu carrinho está vazio.</p>
         </div>
-        <div class="cart-footer">
-            <p id="total-price-display" class="total-price">Total: R$ 0,00</p>
-            <button class="checkout-button">Finalizar Compra</button>
-        </div>
-    </div>
 
-    <div id="cart-overlay" class="cart-overlay"></div>
+
+        <div class="cart-footer">
+            <div class="checkout-group">
+                <label for="customer-select">Cliente</label>
+                <select id="customer-select">
+                    <option value="">Selecione um cliente...</option>
+                </select>
+            </div>
+
+            <div class="checkout-group" style="margin-top: 10px;">
+                <label for="payment-method">Forma de Pagamento</label>
+                <select id="payment-method">
+                    <option value="PIX">PIX</option>
+                    <option value="CARTAO_CREDITO">Cartão de Crédito</option>
+                    <option value="DINHEIRO">Dinheiro</option>
+                </select>
+            </div>
+
+            <div class="total-container">
+                <p id="total-price-display">Total: R$ 0,00</p>
+            </div>
+
+            <button class="checkout-button">Confirmar e Finalizar Pedido</button>
+        </div>
+
+
 
     <footer>
         <div class="bottom-bar">
             <p>&copy; Lynx Brasil All rights reserved</p>
         </div>
     </footer>
-
-    <script src="scripts/scriptHeader.js"></script>
-    <script src="scripts/scriptProducts"></script> 
-    
 </body>
+
+
+
+    <script src="/frontEnd/scripts/scriptApi.js" defer></script>
+    <script src="/frontEnd/scripts/LoadCostumers.js" defer></script>
+    <script src="/frontEnd/scripts/LoadProducts.js" defer></script>
+    <script src="/frontEnd/scripts/Order.js" defer></script>
+    <script src="/frontEnd/scripts/Cart.js" defer></script>
+    <script src="/frontEnd/scripts/Payment.js" defer></script>
+
+
+
+
+
+
+
 </html>

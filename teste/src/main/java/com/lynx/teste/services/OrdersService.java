@@ -97,6 +97,7 @@ public class OrdersService {
         }
 
         entity.setItems(items);
+        entity.CalculateTotalAmount();
         entity.getTotalAmount();
     }
 
