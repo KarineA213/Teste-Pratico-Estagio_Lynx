@@ -24,7 +24,7 @@ async function loadInitialData() {
 
 
 
-//UI basicos pedidos 
+//UI basicos pedidos
 function setupUIEvents() {
 
 
