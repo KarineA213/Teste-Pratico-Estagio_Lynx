@@ -16,7 +16,7 @@ public class ControllerExceptionHandler {
 
 
     @ExceptionHandler(ResourceNotFoundException.class)
-    public ResponseEntity<String> handleResourceNotFoundException(ConfigDataResourceNotFoundException e, HttpServletRequest request) {
+    public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException e, HttpServletRequest request) {
 
         HttpStatus status = HttpStatus.NOT_FOUND;
         CustomError error = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());

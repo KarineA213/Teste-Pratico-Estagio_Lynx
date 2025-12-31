@@ -51,82 +51,75 @@ async function finalizarPedido() {
 //carregar os pedidos
 async function loadOrders() {
     const ordersContainer = document.getElementById('orders-list');
-    if (!ordersContainer) {
-        console.warn("Aviso: Elemento lista de pedidos não encontrada.");
-        return;
-    }
+    if (!ordersContainer) return;
 
     try {
         const response = await fetch(`${API_URL}/orders`);
-
-        if (!response.ok) throw new Error("Erro ao se conectar a API de pedidos");
+        if (!response.ok) throw new Error("Erro ao carregar histórico");
 
         const data = await response.json();
-
-        //precisei alterar pra dar suporte a lista e pageable pq n tava aceitando pageable
         const orders = data.content || data;
 
-        //precisa limpar o container pra n duplicar
-        ordersContainer.innerHTML = "";
-
-        // if (!orders || orders.length === 0) {
-        //     ordersContainer.innerHTML = "<p style='text-align:center; padding:20px;'>Nenhum pedido encontrado no histórico.</p>";
-        //     return;
-        // }
+        if (!orders || orders.length === 0) {
+            ordersContainer.innerHTML = "<p style='text-align:center;'>Nenhum pedido encontrado.</p>";
+            return;
+        }
 
         //do maior pro menor
         const sortedOrders = [...orders].sort((a, b) => b.id - a.id);
 
-
-        ordersContainer.innerHTML = sortedOrders.map(order => {
-
-
-            const rawItems = order.items || order.orderItems || [];
-
-            let itemsHTML = "";
-
-            if (rawItems.length > 0) {
-                itemsHTML = rawItems.map(item => {
-
-                    //tenta pegar o nome de qualquer jeito
-                    const nome = item.productName || item.name || (item.product ? item.product.name : "Produto");
-                    return `
-                        <div style="display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #000; font-size: 0.9em;">
-                            <span> <strong>${nome}</strong></span>
-                            <span>Qtd: ${item.quantity}</span>
-                        </div>`;
-                }).join('');
-            } else {
-                itemsHTML = `<div style="color: #666; font-style: italic;">Sem itens detalhados neste pedido.</div>`;
-            }
-
-            // --- TEMPLATE DO CARD ---
-            return `
-                <div class="order-card-final" style="background: #ffff00; border: 3px solid #000; margin-bottom: 25px; padding: 20px; box-shadow: 6px 6px 0px #000; color: #000; font-family: 'Courier New', Courier, monospace;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 10px;">
-                        <h3 style="margin: 0;">#PEDIDO ${order.id}</h3>
-                        <span style="background: #000; color: #fff; padding: 3px 10px; font-weight: bold; font-size: 0.8em; text-transform: uppercase;">
-                            ${order.status || 'NEW'}
-                        </span>
-                    </div>
-                    
-                    <p style="margin: 5px 0;"><strong> Data:</strong> ${new Date(order.createdAt || Date.now()).toLocaleString('pt-PT')}</p>
-                    
-                    <div style="margin: 15px 0; background: rgba(0,0,0,0.03); padding: 10px; border: 1px solid #000;">
-                        <h4 style="margin: 0 0 10px 0; font-size: 1em; text-transform: uppercase; border-bottom: 1px solid #000;">Itens do Pedido:</h4>
-                        ${itemsHTML}
-                    </div>
-
-                    <div style="text-align: right; font-size: 1.3em; border-top: 2px solid #000; padding-top: 10px; margin-top: 10px;">
-                        <strong>TOTAL: R$ ${(order.totalAmount || 0).toFixed(2)}</strong>
-                    </div>
+        ordersContainer.innerHTML = sortedOrders.map(order => `
+            <div class="order-card-final" 
+                 onclick="showOrderDetails(${order.id})" 
+                 style="background: #ffff00; border: 3px solid #000; margin-bottom: 20px; padding: 15px; cursor: pointer; box-shadow: 4px 4px 0px #000;">
+                <div style="display: flex; justify-content: space-between;">
+                    <strong>#PEDIDO ${order.id}</strong>
+                    <span style="background: #000; color: #fff; padding: 2px 8px; font-size: 0.8em;">${order.status}</span>
                 </div>
-            `;
-        }).join('');
-
+                <p style="margin: 10px 0 5px 0;">Data: ${new Date(order.createdAt).toLocaleString('pt-PT')}</p>
+                <p><strong>Total: R$ ${(order.totalAmount || 0).toFixed(2)}</strong></p>
+                <small style="color: #555;">(Clique para ver detalhes)</small>
+                <div id="details-${order.id}" class="order-details-container" style="display:none; margin-top: 15px; border-top: 1px solid #000; padding-top: 10px;">
+                    </div>
+            </div>
+        `).join('');
 
     } catch (err) {
         console.error("Erro ao carregar pedidos:", err);
-        // ordersContainer.innerHTML = `<p style="color:red; text-align:center;">Erro ao carregar pedidos. Verifique o console.</p>`;
+    }
+}
+
+    //todo: precisa de um detalhe ao clicar, obrigatorio
+    //detalhe ao clicar
+async function showOrderDetails(orderId) {
+    const detailsDiv = document.getElementById(`details-${orderId}`);
+
+    // Se já estiver aberto, fecha
+    if (detailsDiv.style.display === 'block') {
+        detailsDiv.style.display = 'none';
+        return;
+    }
+
+    try {
+        const response = await fetch(`${API_URL}/orders/${orderId}`);
+        if (!response.ok) throw new Error("Erro ao buscar detalhes");
+
+        const order = await response.json();
+        const items = order.items || [];
+
+        let itemsHTML = "<h4>Itens do Pedido:</h4>";
+        itemsHTML += items.map(item => `
+            <div style="display: flex; justify-content: space-between; font-size: 0.9em; margin-bottom: 5px;">
+                <span>${item.productName || 'Produto'} (x${item.quantity})</span>
+                <span>R$ ${(item.unitPriceCents / 100).toFixed(2)}/un</span>
+            </div>
+        `).join('');
+
+        detailsDiv.innerHTML = itemsHTML;
+        detailsDiv.style.display = 'block';
+
+    } catch (err) {
+        console.error("Erro ao detalhar pedido:", err);
+        alert("Não foi possível carregar os detalhes do pedido.");
     }
 }

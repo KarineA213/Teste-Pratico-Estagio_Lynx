@@ -45,7 +45,7 @@ public class OrdersControllers {
      OrdersDto createdOrderDto = ordersService.insert(dto);
      URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
              .buildAndExpand(createdOrderDto.getId()).toUri();
-     return ResponseEntity.created(uri).build();
+     return ResponseEntity.created(uri).body(createdOrderDto);
 
     }
 
