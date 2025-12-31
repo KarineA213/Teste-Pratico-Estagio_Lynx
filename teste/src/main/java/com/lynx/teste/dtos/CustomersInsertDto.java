@@ -12,13 +12,11 @@ import java.time.LocalDateTime;
 public class CustomersInsertDto {
 
 
-    private Long id;
     private String name;
     private String email;
 
 
     public CustomersInsertDto(CustomersDto entity) {
-        id = entity.getId();
         name = entity.getName();
         email = entity.getEmail();
     }

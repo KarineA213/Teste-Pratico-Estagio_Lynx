@@ -1,37 +1,55 @@
 
-async function pegarDados() {
+//config api
+const API_URL = "http://localhost:8080";
+let allProducts = [];
+let cart = JSON.parse(localStorage.getItem('lynx_cart')) || [];
+
+// INICIALIZAÇÃO ÚNICA
+document.addEventListener("DOMContentLoaded", () => {
+    loadInitialData();
+    setupUIEvents();
+    updateCartUI();
+});
+
+
+//carregar os dados do seeding
+async function loadInitialData() {
     try {
-        const response = await fetch("http://localhost:8080/products");
-        const data = await response.json();
-        console.log(data); // Veja a estrutura no console
+        await Promise.all([loadProducts(), loadCustomers(), loadOrders()]);
     } catch (error) {
-        console.error("Erro:", error);
+        console.error("Erro no carregamento inicial:", error);
     }
 }
 
-pegarDados();
 
-fetch("http://localhost:8080/products")
-    .then(res => res.json())
-    .then(data => {
-        // 'data.content' é o array que vem do teu ProductsControllers
-        const produtos = data.content; 
 
-        // O front "mapeia" os dados para HTML
-        let htmlGerado = "";
-        produtos.forEach(p => {
-            htmlGerado += `
-                <div class="product-card">
-                    <h3>${p.name}</h3>
-                    <p>Preço: R$ ${p.priceCents / 100}</p>
-                </div>
-            `;
-        });
 
-        // O front coloca o conteúdo na tela
-        document.getElementById("products").innerHTML = htmlGerado;
-    })
-    .catch(err => {
-        // O front trata o erro (ex: servidor desligado)
-        alert("Não foi possível carregar os produtos!");
+//UI basicos pedidos 
+function setupUIEvents() {
+
+
+    // sidebar
+    document.getElementById("cart-icon")?.addEventListener("click", () => toggleCart(true));
+    document.getElementById("close-cart")?.addEventListener("click", () => toggleCart(false));
+    document.getElementById("cart-overlay")?.addEventListener("click", () => toggleCart(false));
+
+    // botao de limpar carrinho
+    document.getElementById("clear-cart")?.addEventListener("click", () => {
+        cart = [];
+        saveCartAndRefresh();
     });
+
+    //botao de fechar o pedido
+    const checkoutBtn = document.querySelector('.checkout-button');
+    if (checkoutBtn) {
+        checkoutBtn.onclick = finalizarPedido;
+    }
+
+    // menu hamburguer
+    const hamburguer = document.querySelector(".hamburguer");
+    const navList = document.querySelector(".nav-list");
+    hamburguer?.addEventListener("click", () => {
+        navList?.classList.toggle("active");
+        hamburguer?.classList.toggle("active");
+    });
+}

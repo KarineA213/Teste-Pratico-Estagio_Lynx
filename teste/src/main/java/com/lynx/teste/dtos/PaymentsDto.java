@@ -56,4 +56,25 @@ public class PaymentsDto {
     public LocalDateTime getPaidAt() {
         return paidAt;
     }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public void setMethod(Method method) {
+        this.method = method;
+    }
+
+    public void setAmountCents(BigDecimal amountCents) {
+        this.amountCents = amountCents;
+    }
+
+    public void setPaidAt(LocalDateTime paidAt) {
+        this.paidAt = paidAt;
+    }
 }

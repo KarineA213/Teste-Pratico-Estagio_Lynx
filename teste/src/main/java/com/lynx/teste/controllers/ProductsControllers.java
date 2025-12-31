@@ -18,8 +18,6 @@ public class ProductsControllers {
 
     @Autowired
     private ProductsService productsService;
-    @Autowired
-    private DefaultErrorAttributes defaultErrorAttributes;
 
 
     @GetMapping("/{id}")
@@ -39,7 +37,8 @@ public class ProductsControllers {
             productsPage = productsService.findAll(pageable);
         }
         else{
-            productsPage = productsService.findByName(name, pageable);
+            productsPage =
+                    productsService.findByName(name, pageable);
 
         }
 
